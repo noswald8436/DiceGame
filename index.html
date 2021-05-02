@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> 235 Game </title>
+<style type="text/css">
+<!--
+body {background-color: #AEAFFF;
+	  font-family: 'Arial';
+	  }
+button.rollD {color: #FFFFFF;
+			  background-color: #6600CC;
+			  font-family: 'Times New Roman';
+			  font-weight: bold;
+			  padding: 6px;
+			  border= 4px;
+			  border-style: outset;
+			  }
+			  
+button.newG {color: #000033;
+			 font-family: 'Times New Roman';
+			 background-color:#bebfaf;
+			 padding:8px; 
+			 border:2px; 
+			 border-style:outset;
+			 }
+			 
+td.c {background-color: #8935EF;
+	  height: 30px;
+	  width: 40px;
+	  color: #cccccc;
+	  text-align: center;
+	  }
+	  
+td.n {font-weight: bold;
+	  text-align: center;
+	  font-family: 'Arial;
+	  height: 30px;
+	  }
+	  
+input.statusBar {background-color:#bebfaf;
+				 border:2px;
+				 border-style:inset;
+				 font-weight:bold;
+				 font-style:italic;
+				 padding:7px;
+				 }
+				 
+td.gameTitle {background-color:#8789ff;
+			  padding:8px;
+			  font-weight:bold;
+			  font-style:italic;
+			  color: #141879;
+			  }
+			  
+td.d2 {padding:7px; 
+	   color:#FFFFFF;
+	   font-family: 'monospace';
+-->
+
+</style>
+</head>
+
+<body>
+
+<script language="JavaScript">
+<!--
+
+					//0 1 2 3 4 5 6 7 8 9 0 1 2
+var count = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0);
+var sum = 0;
+var rollCount = 0;
+
+function addChip(n) {
+	if(sum < 10) {
+	var a = document.getElementById("b"+n);
+	count[n]++;
+	a.innerHTML = count[n];
+	updateStatus1();
+	}
+}	
+
+function rollDice() {
+	
+	rollCount++;
+	
+	var t0 = document.getElementById("d0");
+	var t1 = document.getElementById("d1");
+	var t2 = document.getElementById("d2");
+	
+	var r0 = Math.floor((6*Math.random()) + 1);
+	var r1 = Math.floor((6*Math.random()) + 1);
+	
+	var t = r0 + r1;
+	
+	if(count[t]>0) {
+		count[t]--;
+		var b = document.getElementById("statusBar");
+		b.value = "Status:  You got a match !!!";
+	} else {
+		var b = document.getElementById("statusBar");
+		b.value = "Status:  No match !!!";
+	}
+	
+	t0.innerHTML = "<img src='pix/dice"+r0+".gif'>";
+	t1.innerHTML = "<img src='pix/dice"+r1+".gif'>";
+	t2.style.backgroundColor='#ce11f1';
+	t2.innerHTML = "Rolls: " + rollCount;
+		
+	var a = document.getElementById("b"+t);
+	if(count[t]==0) {
+		a.innerHTML = "";
+	} else {
+		a.innerHTML = count[t];
+	}
+	
+	
+	
+}
+
+function updateStatus1() {
+	sum = 0
+	for (var i = 0; i < count.length; i++) {
+		sum += count[i];
+	}
+	
+	var b = document.getElementById("statusBar");
+	if(sum == 1) {
+		b.value = "Status: 1 chip has been used.";
+	} else {
+		b.value = "Status: " + sum + " chips have been used.";
+	}
+}
+
+function newGame() {
+	rollCount=0;
+	count = [0,0,0,0,0,0,0,0,0,0,0,0,0]
+	for (var i=2; i<13; i++) {
+		var c = document.getElementById("b"+i);
+		c.innerHTML = "";
+	}
+	
+	document.getElementById("d2").style.backgroundColor='';
+	document.getElementById("d2").innerHTML = "";
+	document.getElementById("statusBar").value = "Status:  Ready to Play"
+}	
+//-->
+</script>
+
+<table border="0" style="padding-top:50px;">
+
+<tr> <td>
+<table style="padding-left:70px;float:left;" border="0">
+<td class="gameTitle"> CSC 235 Game </td>
+<table style="float:right;" border="0">
+<tr> 
+	<td id="d0" style="height:50px;width:50px;padding-right:50px;padding-left:70px;"> </td> 
+	<td id="d1" style="height:50px;width:50px;padding-right:70px;"> </td> 
+</tr>
+<tr> 
+	<td colspan="2">
+	<table style="margin-left:auto;margin-right:auto;padding-top:40px;">
+	<td id="d2" class="d2"> </td>
+	</table>
+
+	</td> 
+</tr>
+</table>
+</td> <td> <button onClick="rollDice();" class="rollD"> Roll Dice </button> </td> </tr>
+<tr> <td style="padding-top:35px;">
+ 
+<table border ="0" style="padding-left:30px;">
+	<tr> 
+		 <td class="c" id="b2" onClick="addChip(2);"> </td> <td> </td>
+		 <td class="c" id="b4" onClick="addChip(4);"> </td> <td> </td> 
+		 <td class="c" id="b6" onClick="addChip(6);"> </td> <td> </td> 
+		 <td class="c" id="b8" onClick="addChip(8);"> </td> <td> </td> 
+		 <td class="c" id="b10" onClick="addChip(10);"> </td> <td> </td> 
+		 <td class="c" id="b12" onClick="addChip(12);"> </td>
+	</tr>
+	<tr> 
+		 <td class="n" style="padding-top:40px; padding-bottom:40px"> 2 </td><td></td> 
+		 <td class="n"> 4 </td> <td> </td> 
+		 <td class="n"> 6 </td> <td> </td> 
+		 <td class="n"> 8 </td> <td> </td> 
+		 <td class="n"> 10 </td> <td> </td> 
+		 <td class="n"> 12 </td>
+	</tr>
+	<tr> 
+		 <td> </td> <td class="c" id="b3" onClick="addChip(3);"> </td> <td> </td> 
+		 <td class="c" id="b5" onClick="addChip(5);"> </td> <td> </td> 
+		 <td class="c" id="b7" onClick="addChip(7);"> </td> <td> </td> 
+		 <td class="c" id="b9" onClick="addChip(9);"> </td> <td> </td> 
+		 <td class="c" id="b11" onClick="addChip(11);"> </td> <td> </td>
+	</tr>
+	<tr> 
+		 <td> </td> <td class="n" style="padding-top:40px; padding-bottom:40px"> 3 </td> <td> </td> 
+		 <td class="n"> 5 </td> <td> </td> 
+		 <td class="n"> 7 </td> <td> </td> 
+		 <td class="n"> 9 </td> <td> </td> 
+		 <td class="n"> 11 </td> <td> </td>
+	</tr>
+</table>
+
+</td> <td> </td> </tr>
+<tr> <td style="text-align:center; padding-right:88px;"> 
+<input id="statusBar" type="text" size="27" class="statusBar" value="Status:  Ready to Play"></td>
+<td> <button onClick="newGame();" class="newG">New Game</button> </td> </tr>
+
+</table>
+</body>
+</html>
