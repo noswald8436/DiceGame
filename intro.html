@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Dice Roll Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #343a40;
+            color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .intro-box {
+            background-color: #212529;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            text-align: center;
+        }
+        .btn-start {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .btn-start:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="intro-box">
+        <h1>Welcome to the Dice Roll Game!</h1>
+        <p>This game lets you experience the excitement of rolling dice with customizable options for different-sided dice. Your task is to predict and place markers on the sums you believe will appear the most when two dice are rolled.</p>
+        <h3>How to Play:</h3>
+        <ol>
+            <li>Select the number of sides for each die (6 to 20 sides).</li>
+            <li>Place up to 10 markers on any sum that two dice can roll (e.g., 7, 8, etc.).</li>
+            <li>Click "Roll Dice" to throw the dice.</li>
+            <li>The roll counter will track how many dice rolls you've taken.</li>
+            <li>If the sum of the two dice matches a number with markers, one marker is removed from that number.</li>
+            <li>The game continues until all markers have been removed.</li>
+        </ol>
+        <p>Good luck, and may the dice be ever in your favor!</p>
+        <button class="btn btn-start" onclick="startGame()">Start Game</button>
+    </div>
+
+    <script>
+        function startGame() {
+            window.location.href = 'index.html'; // Redirect to the main game page
+        }
+    </script>
+</body>
+</html>
